@@ -86,3 +86,7 @@ label {
   font-weight: normal;
   z-index: 100;
 }
+
+input .check-list {
+  background: #f4f4f4;
+}
