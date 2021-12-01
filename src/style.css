@@ -1,0 +1,88 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins&display=swap");
+
+*,
+::before,
+::after {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+}
+
+body {
+  font-family: "Poppins", sans-serif;
+  background-color: #f6f6f6;
+}
+
+main {
+  margin: 10% 15% 10% 50%;
+  transform: translateX(-50%);
+  border: 5px solid rgb(245, 245, 245);
+  box-shadow: 4px 5px 8px grey;
+  background-color: #fff;
+}
+
+main header h3 {
+  border-bottom: 1px solid rgb(221, 220, 220);
+  padding: 1rem 0;
+  padding-left: 0.8rem;
+  margin-bottom: 0;
+  margin-top: 0;
+  font-weight: normal;
+}
+
+i {
+  color: #e0dbdb;
+  opacity: 0.8;
+}
+
+label > i,
+main header h3 > i {
+  float: right;
+  margin-right: 2rem;
+}
+
+.add-task {
+  display: flex;
+  align-items: baseline;
+  border-bottom: 1px solid rgb(221, 220, 220);
+}
+
+.icon {
+  margin-right: 2rem;
+}
+
+.add-task input {
+  outline: none;
+  padding: 1rem 0;
+  padding-left: 0.8rem;
+  border: none;
+  width: 97%;
+}
+
+ul {
+  margin-top: 0;
+  padding-left: 0;
+}
+
+li {
+  list-style-type: none;
+  border-bottom: 1px solid rgb(221, 220, 220);
+  padding: 0.8rem 0;
+  padding-left: 0.8rem;
+}
+
+[type~="checkbox"] {
+  cursor: pointer;
+}
+
+label {
+  margin-left: 0.8rem;
+}
+
+.clear-task h4 {
+  padding: 1rem 0.7rem;
+  text-align: center;
+  background-color: #f6f6f6;
+  font-weight: normal;
+  z-index: 100;
+}
