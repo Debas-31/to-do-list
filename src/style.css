@@ -10,7 +10,7 @@
 
 body {
   font-family: "Poppins", sans-serif;
-  background-color: #f6f6f6; 
+  background-color: #f6f6f6;
 }
 
 main {
@@ -30,6 +30,11 @@ main header h3 {
   font-weight: normal;
 }
 
+i {
+  color: #e0dbdb;
+  opacity: 0.8;
+}
+
 label > i,
 main header h3 > i {
   float: right;
@@ -42,10 +47,6 @@ main header h3 > i {
   border-bottom: 1px solid rgb(221, 220, 220);
 }
 
-i {
-  color: #e0dbdb;
-  opacity: 0.8;
-}
 .icon {
   margin-right: 2rem;
 }
