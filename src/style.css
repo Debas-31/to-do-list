@@ -1,4 +1,6 @@
-*, ::before, ::after {
+*,
+::before,
+::after {
   box-sizing: border-box;
   padding: 0;
   margin: 0;
@@ -21,7 +23,7 @@ main header h3 {
 
 label > i,
 main header h3 > i {
-  float: right; 
+  float: right;
   margin-right: 2rem;
 }
 
@@ -51,7 +53,7 @@ ul {
 li {
   list-style-type: none;
   border-bottom: 1px solid rgb(221, 220, 220);
-  padding: 1.3rem 0rem;
+  padding: 1.3rem 0;
   padding-left: 0.8rem;
 }
 
