@@ -1,16 +1,45 @@
-function displayBox() {
-  const labelList = document.querySelectorAll('.list');
-  const checkBoxes = document.querySelectorAll('.check-list');
-  for (let i = 0; i < checkBoxes.length; i += 1) {
-    checkBoxes[i].addEventListener('change', () => {
-      if (checkBoxes[i].checked) {
-        labelList[i].style.textDecoration = 'line-through';
+import { listArray, showTasks } from './data.js';
+
+const listInput = showTasks();
+
+const interact = () => {
+  listInput.forEach((item) => {
+    item.addEventListener('change', () => {
+      const parent = item.parentNode;
+      const superParent = parent.parentNode;
+      const index = Array.prototype.indexOf.call(superParent.children, parent);
+      const currentItem = listArray[index].completed;
+      if (currentItem) {
+        listArray[index].completed = false;
       } else {
-        labelList[i].style.textDecoration = 'none';
+        listArray[index].completed = true;
       }
     });
-  }
-}
-displayBox();
-// eslint-disable-next-line import/prefer-default-export
-export { displayBox };
+  });
+};
+
+const storeValues = () => {
+  listInput.forEach((item) => {
+    item.addEventListener('change', () => {
+      localStorage.setItem('itemsLocal', JSON.stringify(listArray));
+    });
+  });
+};
+
+const populateStorage = () => {
+  window.addEventListener('load', () => {
+    const itemsLocal = JSON.parse(localStorage.getItem('itemsLocal'));
+    listArray.splice(0, listArray.length, ...itemsLocal);
+    listInput.forEach((item) => {
+      const parent = item.parentNode;
+      const superParent = parent.parentNode;
+      const index = Array.prototype.indexOf.call(superParent.children, parent);
+      const currentItem = listArray[index].completed;
+      if (currentItem) {
+        item.setAttribute('checked', '');
+      }
+    });
+  });
+};
+
+export { interact, storeValues, populateStorage };

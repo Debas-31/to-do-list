@@ -35,7 +35,6 @@ i {
   opacity: 0.8;
 }
 
-label > i,
 main header h3 > i {
   float: right;
   margin-right: 2rem;
@@ -49,6 +48,12 @@ main header h3 > i {
 
 .icon {
   margin-right: 2rem;
+}
+
+.fa-ellipsis-v {
+  position: absolute;
+  right: 2rem;
+  top: 1rem;
 }
 
 .add-task input {
@@ -69,6 +74,7 @@ li {
   border-bottom: 1px solid rgb(221, 220, 220);
   padding: 0.8rem 0;
   padding-left: 0.8rem;
+  position: relative;
 }
 
 [type~="checkbox"] {
@@ -89,4 +95,11 @@ label {
 
 input .check-list {
   background: #f4f4f4;
+}
+
+.list-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding-left: 0.5rem;
 }
