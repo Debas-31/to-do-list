@@ -1,5 +1,18 @@
-/* eslint-disable no-use-before-define */
 const listArray = [];
+const add = () => {
+  const list = document.querySelector('.task-list');
+  const itemsLocal = JSON.parse(localStorage.getItem('itemsLocal'));
+  listArray.splice(0, listArray.length, ...itemsLocal);
+  list.innerHTML = '';
+  for (let i = 0; i < listArray.length; i += 1) {
+    const { description } = itemsLocal[i];
+    const listItem = document.createElement('li');
+    listItem.className = 'list-item';
+    listItem.innerHTML = `<input class="list-input" type="checkbox"><textarea name="textarea cols="30" class="item-details">${description}</textarea><i class="fas fa-trash-alt"></i>`;
+    list.appendChild(listItem);
+  }
+};
+
 const form = document.getElementById('form-id');
 const showTasks = () => {
   form.addEventListener('submit', (e) => {
@@ -123,24 +136,11 @@ const interact = (listInput) => {
   });
 };
 
-const add = () => {
-  const list = document.querySelector('.task-list');
-  const itemsLocal = JSON.parse(localStorage.getItem('itemsLocal'));
-  listArray.splice(0, listArray.length, ...itemsLocal);
-  list.innerHTML = '';
-  for (let i = 0; i < listArray.length; i += 1) {
-    const { description } = itemsLocal[i];
-    const listItem = document.createElement('li');
-    listItem.className = 'list-item';
-    listItem.innerHTML = `<input class="list-input" type="checkbox"><textarea name="textarea cols="30" class="item-details">${description}</textarea><i class="fas fa-trash-alt"></i>`;
-    list.appendChild(listItem);
-  }
-  const listInput = document.querySelectorAll('.list-input');
-  interact(listInput);
-  clearList(listInput);
-  removeItem();
-  updateValues();
-};
+const listInput = document.querySelectorAll('.list-input');
+interact(listInput);
+clearList(listInput);
+removeItem();
+updateValues();
 
 showTasks();
 
