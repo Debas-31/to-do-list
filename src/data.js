@@ -3,11 +3,10 @@
 const listArray = [];
 const form = document.getElementById('form-id');
 const showTasks = () => {
-  const container = document.querySelector('.task-list');
-
   form.addEventListener('submit', (e) => {
     e.preventDefault();
     const task = form.elements[0].value;
+
     const data = {
       description: task,
       completed: false,
@@ -17,25 +16,24 @@ const showTasks = () => {
     listArray.push(data);
     localStorage.setItem('itemsLocal', JSON.stringify(listArray));
     add();
-  })
-
+  });
 };
 
 const removeItem = () => {
   const button = document.querySelectorAll('.fa-trash-alt');
   button.forEach((item) => {
-    const parent =item.parentNode;
+    const parent = item.parentNode;
     const superParent = parent.parentNode;
     const index = Array.prototype.indexOf.call(superParent.children, parent);
     const listInput = parent.firstChild;
     item.addEventListener('click', () => {
       const itemsLocal = JSON.parse(localStorage.getItem('itemsLocal'));
       listArray.splice(0, listArray.length, ...itemsLocal);
-      if(listInput.hasAttribute('checked')){
+      if (listInput.hasAttribute('checked')) {
         parent.remove();
-        listArray.splice(index, 1)
+        listArray.splice(index, 1);
       }
-      for(let i = 0; i < listArray.length; i += 1){
+      for (let i = 0; i < listArray.length; i += 1) {
         listArray[i].index = i + 1;
       }
       localStorage.setItem('itemsLocal', JSON.stringify(listArray));
@@ -47,12 +45,12 @@ const removeItem = () => {
 const clearList = () => {
   const getClearElement = document.querySelector('.clear-task');
   getClearElement.addEventListener('click', () => {
-    for(let i = 0; i < listArray.length; i += 1){
-      if(listArray[i].completed){
+    for (let i = 0; i < listArray.length; i += 1) {
+      if (listArray[i].completed) {
         listArray.splice(i, 1);
       }
     }
-    for(let i = 0; i < listArray.length; i += 1){
+    for (let i = 0; i < listArray.length; i += 1) {
       listArray[i].index = i + 1;
     }
     localStorage.setItem('itemsLocal', JSON.stringify(listArray));
@@ -62,7 +60,7 @@ const clearList = () => {
 
 const updateValues = () => {
   const itemDetails = document.querySelectorAll('item-details');
-  itemDetails.forEach((item) =>{
+  itemDetails.forEach((item) => {
     const parent = item.parentNode;
     const superParent = parent.parentNode;
     const index = Array.prototype.indexOf.call(superParent.children, parent);
@@ -75,15 +73,16 @@ const updateValues = () => {
 
 const textDecor = (listInput) => {
   listInput.forEach((item) => {
-    if(item.hasAttribute('checked')){
-      item.nextSibling.style.textDecoration = 'line-through'
-    }else{
+    if (item.hasAttribute('checked')) {
+      item.nextSibling.style.textDecoration = 'line-through';
+    } else {
       item.nextSibling.style.textDecoration = 'none';
     }
   });
 };
 
-export  const storageForTask = () => {
+/* eslint-disable import/prefer-default-export */
+export const storageForTask = () => {
   window.addEventListener('load', () => {
     add();
     const listInput = document.querySelectorAll('.list-input');
@@ -93,7 +92,7 @@ export  const storageForTask = () => {
       const superParent = parent.parentNode;
       const index = Array.prototype.indexOf.call(superParent.children, parent);
       const currentItem = itemsLocal[index].completed;
-      if(currentItem){
+      if (currentItem) {
         item.setAttribute('checked', '');
         parent.lastChild.style.display = 'block';
       }
@@ -126,13 +125,12 @@ const interact = (listInput) => {
   });
 };
 
-
 const add = () => {
   const list = document.querySelector('.task-list');
   const itemsLocal = JSON.parse(localStorage.getItem('itemsLocal'));
   listArray.splice(0, listArray.length, ...itemsLocal);
   list.innerHTML = '';
-  for (let i = 0; i < listArray.length; i += 1){
+  for (let i = 0; i < listArray.length; i += 1) {
     const { description } = itemsLocal[i];
     const listItem = document.createElement('li');
     listItem.className = 'list-item';
@@ -144,6 +142,6 @@ const add = () => {
   clearList(listInput);
   removeItem();
   updateValues();
-}
+};
 
 showTasks();
