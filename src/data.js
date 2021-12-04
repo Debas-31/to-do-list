@@ -1,5 +1,4 @@
 /* eslint-disable no-use-before-define */
-
 const listArray = [];
 const form = document.getElementById('form-id');
 const showTasks = () => {
@@ -81,8 +80,7 @@ const textDecor = (listInput) => {
   });
 };
 
-/* eslint-disable import/prefer-default-export */
-export const storageForTask = () => {
+const storageForTask = () => {
   window.addEventListener('load', () => {
     add();
     const listInput = document.querySelectorAll('.list-input');
@@ -145,3 +143,5 @@ const add = () => {
 };
 
 showTasks();
+
+export default storageForTask;

@@ -1,4 +1,4 @@
 import './style.css';
-import { storageForTask } from './data.js';
+import storageForTask from './data.js';
 
 storageForTask();
