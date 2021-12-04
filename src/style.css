@@ -93,10 +93,6 @@ label {
   z-index: 100;
 }
 
-input .check-list {
-  background: #f4f4f4;
-}
-
 .list-item {
   display: flex;
   align-items: center;
