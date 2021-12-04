@@ -1,6 +1,4 @@
 import './style.css';
-import { interact, storeValues, populateStorage } from './check.js';
+import { storageForTask } from './data.js';
 
-interact();
-storeValues();
-populateStorage();
+storageForTask();

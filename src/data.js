@@ -7,7 +7,7 @@ const showTasks = () => {
 
   form.addEventListener('submit', (e) => {
     e.preventDefault();
-    const task = form.element[0].value;
+    const task = form.elements[0].value;
     const data = {
       description: task,
       completed: false,
@@ -35,7 +35,9 @@ const removeItem = () => {
         parent.remove();
         listArray.splice(index, 1)
       }
-      for(let i = 0; i < listArray.length; i += 1)
+      for(let i = 0; i < listArray.length; i += 1){
+        listArray[i].index = i + 1;
+      }
       localStorage.setItem('itemsLocal', JSON.stringify(listArray));
       add();
     });
@@ -45,7 +47,7 @@ const removeItem = () => {
 const clearList = () => {
   const getClearElement = document.querySelector('.clear-task');
   getClearElement.addEventListener('click', () => {
-    for(let i = 0; i < listArray; i += 1){
+    for(let i = 0; i < listArray.length; i += 1){
       if(listArray[i].completed){
         listArray.splice(i, 1);
       }
@@ -56,7 +58,7 @@ const clearList = () => {
     localStorage.setItem('itemsLocal', JSON.stringify(listArray));
     add();
   });
-}
+};
 
 const updateValues = () => {
   const itemDetails = document.querySelectorAll('item-details');
@@ -81,7 +83,7 @@ const textDecor = (listInput) => {
   });
 };
 
-export default function populateStorage(){
+export  const storageForTask = () => {
   window.addEventListener('load', () => {
     add();
     const listInput = document.querySelectorAll('.list-input');
@@ -98,7 +100,32 @@ export default function populateStorage(){
     });
     textDecor(listInput);
   });
-}
+};
+
+const interact = (listInput) => {
+  listInput.forEach((item) => {
+    item.addEventListener('change', () => {
+      const itemsLocal = JSON.parse(localStorage.getItem('itemsLocal'));
+      const parent = item.parentNode;
+      const superParent = parent.parentNode;
+      const index = Array.prototype.indexOf.call(superParent.children, parent);
+      const currentItem = itemsLocal[index].completed;
+      if (currentItem) {
+        item.removeAttribute('checked');
+        parent.lastChild.style.display = 'none';
+        itemsLocal[index].completed = false;
+      } else {
+        item.setAttribute('checked', '');
+        parent.lastChild.style.display = 'block';
+        itemsLocal[index].completed = true;
+      }
+      textDecor(listInput);
+      localStorage.setItem('itemsLocal', JSON.stringify(itemsLocal));
+      listArray.splice(0, listArray.length, ...itemsLocal);
+    });
+  });
+};
+
 
 const add = () => {
   const list = document.querySelector('.task-list');
