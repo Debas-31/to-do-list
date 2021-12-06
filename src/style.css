@@ -91,6 +91,7 @@ label {
   background-color: #f6f6f6;
   font-weight: normal;
   z-index: 100;
+  cursor: pointer;
 }
 
 .list-item {
@@ -101,7 +102,7 @@ label {
 }
 
 .list-input {
-  transform: scale(1.3);
+  transform: scale(1.2);
 }
 
 .item-details {
@@ -116,8 +117,7 @@ label {
 .fa-trash-alt {
   display: none;
   position: absolute;
-  right: 5%;
-  padding-right: 1rem;
+  right: 2rem;
   color: rgba(83, 83, 83, 0.7);
 }
 
@@ -125,13 +125,4 @@ label {
   font-size: 1.1rem;
   margin-top: 1.1rem;
   color: rgb(83, 83, 83);
-}
-
-.clear {
-  text-align: center;
-  font-size: 18px;
-  color: rgb(104, 96, 96);
-  background-color: #91909048;
-  margin-bottom: 0;
-  padding: 20px 0;
 }
