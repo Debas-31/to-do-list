@@ -1,4 +1,5 @@
 const listArray = [];
+/* eslint-disable no-use-before-define */
 const add = () => {
   const list = document.querySelector('.task-list');
   const itemsLocal = JSON.parse(localStorage.getItem('itemsLocal'));
@@ -11,6 +12,11 @@ const add = () => {
     listItem.innerHTML = `<input class="list-input" type="checkbox"><textarea name="textarea cols="30" class="item-details">${description}</textarea><i class="fas fa-trash-alt"></i>`;
     list.appendChild(listItem);
   }
+  const listInput = document.querySelectorAll('.list-input');
+  interact(listInput);
+  clearList(listInput);
+  removeItem();
+  updateValues();
 };
 
 const form = document.getElementById('form-id');
@@ -135,12 +141,6 @@ const interact = (listInput) => {
     });
   });
 };
-
-const listInput = document.querySelectorAll('.list-input');
-interact(listInput);
-clearList(listInput);
-removeItem();
-updateValues();
 
 showTasks();
 
